@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "HatchStride Full Stack",
+        "configurations": ["Debug HatchStride Server", "Debug HatchStride Client"]
+      }
+    ],
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Debug HatchStride Client",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}/client/src",
+        "preLaunchTask": "Run Vite Dev Server"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug HatchStride Server",
+        "program": "${workspaceFolder}/server/src/index.ts",
+        "cwd": "${workspaceFolder}/server",
+        "runtimeArgs": ["--require", "ts-node/register"],
+        "skipFiles": ["<node_internals>/**"],
+        "envFile": "${workspaceFolder}/server/.env"
+      }
+    ]
+  }
+  
