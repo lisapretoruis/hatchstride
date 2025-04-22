@@ -24,3 +24,19 @@ export function isLoggedIn() {
 export function logout() {
   localStorage.removeItem('token');
 }
+
+export async function getUserProfile() {
+  const token = getToken();
+  try {
+
+  const res = await API.get('/auth/me', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return res.data;
+}
+  catch (error) {
+    return console.error('Error fetching user profile:', error);
+  }
+}
