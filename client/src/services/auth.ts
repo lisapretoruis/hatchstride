@@ -5,6 +5,7 @@ const API = axios.create({
 });
 
 export async function login(email: string, password: string) {
+  console.log('Logging in with email:', email);
   const res = await API.post('/auth/login', { email, password });
   localStorage.setItem('token', res.data.token);
 }
@@ -28,11 +29,12 @@ export function logout() {
 export async function getUserProfile() {
   const token = getToken();
   try {
-
   const res = await API.get('/auth/me', {
     headers: {
       Authorization: `Bearer ${token}`
     }
+
+    
   });
   return res.data;
 }
